@@ -1,0 +1,32 @@
+%run data.py
+import random class questions:
+    def __init__(self): #this
+        self.score=0
+    def quiz(self):
+        if len(question_data)!=0:
+            random_dict=random.choice(question_data)
+            random_value=random_dict['text']
+            print(random_value)
+            while len(question_data)!=0:
+                user_input=input("\nEnter true or false for the above question \n type quit to close the quiz?\n\n").title()
+                if user_input==random_dict['answer']:
+                    print("\nU are right\n\n")
+                    self.score+=1
+                    print(f"ur score is {self.score}")
+                elif user_input=='Quit':
+                    question_data.remove(random_dict) #this
+                    question_data.append(random_dict)
+                    break
+                elif user_input not in ["True","False"]:
+                    print(f"\nEnter the correct spelling of {user_input} and second chance is given\n")
+                    question_data.append(random_dict)
+                else:
+                    print(f"\nU are not correct actual answer is {random_dict['answer']} and u answered as {user_input}\n")
+                question_data.remove(random_dict)
+                self.quiz()
+                break
+        else:
+            print("All questions are done")
+que=questions()
+que.quiz()
+print(f"Length of list now {len(question_data)}")
